@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tibetan Treasures India</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #f5c842;
+    --gold-dark: #c8961e;
+    --gold-light: #fde97a;
+    --deep: #0d0500;
+    --deep2: #1a0800;
+    --red: #C0392B;
+    --blue: #1B4FC4;
+    --green: #1E7A1E;
+    --white-flag: #F0EDE0;
+    --yellow-flag: #D4A017;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–deep);
+color: #f0e6c8;
+font-family: ‘Crimson Text’, Georgia, serif;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* Animated mandala background */
+.bg-mandala {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 600px;
+height: 600px;
+opacity: 0.04;
+animation: slowspin 60s linear infinite;
+pointer-events: none;
+z-index: 0;
+}
+
+@keyframes slowspin {
+from { transform: translate(-50%, -50%) rotate(0deg); }
+to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Prayer flags banner */
+.flags-banner {
+width: 100%;
+height: 52px;
+position: relative;
+overflow: hidden;
+z-index: 1;
+}
+
+.flag-string {
+position: absolute;
+top: 10px;
+left: 0;
+right: 0;
+height: 1px;
+background: #8B6914;
+}
+
+.flags-row {
+display: flex;
+justify-content: center;
+gap: 0;
+padding-top: 6px;
+position: relative;
+z-index: 1;
+}
+
+.flag {
+width: 42px;
+height: 34px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 11px;
+color: rgba(255,255,255,0.9);
+border-radius: 2px;
+position: relative;
+animation: flagwave 3s ease-in-out infinite;
+margin: 0 1px;
+}
+
+.flag::before {
+content: ‘’;
+position: absolute;
+top: -6px;
+left: 50%;
+transform: translateX(-50%);
+width: 1px;
+height: 6px;
+background: #8B6914;
+}
+
+.flag:nth-child(1) { background: var(–blue); animation-delay: 0s; }
+.flag:nth-child(2) { background: var(–white-flag); color: #333; animation-delay: 0.3s; }
+.flag:nth-child(3) { background: var(–red); animation-delay: 0.6s; }
+.flag:nth-child(4) { background: var(–green); animation-delay: 0.9s; }
+.flag:nth-child(5) { background: var(–yellow-flag); animation-delay: 1.2s; }
+.flag:nth-child(6) { background: var(–blue); animation-delay: 1.5s; }
+.flag:nth-child(7) { background: var(–white-flag); color: #333; animation-delay: 1.8s; }
+.flag:nth-child(8) { background: var(–red); animation-delay: 2.1s; }
+.flag:nth-child(9) { background: var(–green); animation-delay: 2.4s; }
+.flag:nth-child(10) { background: var(–yellow-flag); animation-delay: 2.7s; }
+
+@keyframes flagwave {
+0%, 100% { transform: skewX(0deg) scaleY(1); }
+25% { transform: skewX(3deg) scaleY(0.97); }
+75% { transform: skewX(-3deg) scaleY(1.03); }
+}
+
+.container {
+max-width: 480px;
+margin: 0 auto;
+padding: 0 20px 60px;
+position: relative;
+z-index: 1;
+}
+
+/* Header */
+.header {
+text-align: center;
+padding: 28px 0 20px;
+animation: fadeUp 0.8s ease both;
+}
+
+.logo-ring {
+width: 90px;
+height: 90px;
+margin: 0 auto 16px;
+border-radius: 50%;
+background: radial-gradient(circle, #1a0800 60%, #0d0500);
+border: 2px solid var(–gold);
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 0 20px rgba(245,200,66,0.3), inset 0 0 20px rgba(245,200,66,0.05);
+position: relative;
+overflow: hidden;
+}
+
+.logo-ring::before {
+content: ‘’;
+position: absolute;
+inset: 4px;
+border-radius: 50%;
+border: 1px solid rgba(245,200,66,0.3);
+}
+
+.logo-symbol {
+font-size: 38px;
+line-height: 1;
+filter: drop-shadow(0 0 8px rgba(245,200,66,0.6));
+}
+
+.store-name {
+font-family: ‘Cinzel’, serif;
+font-size: 22px;
+font-weight: 700;
+letter-spacing: 3px;
+color: var(–gold);
+text-shadow: 0 0 20px rgba(245,200,66,0.4);
+line-height: 1.2;
+}
+
+.store-tagline {
+font-size: 13px;
+color: rgba(240,230,200,0.6);
+letter-spacing: 4px;
+text-transform: uppercase;
+margin-top: 6px;
+font-style: italic;
+}
+
+/* Gold divider */
+.divider {
+display: flex;
+align-items: center;
+gap: 12px;
+margin: 18px 0;
+opacity: 0.6;
+}
+.divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(–gold), transparent); }
+.divider-dot { width: 5px; height: 5px; background: var(–gold); border-radius: 50%; }
+
+/* Story section */
+.story {
+text-align: center;
+padding: 0 10px;
+margin-bottom: 24px;
+animation: fadeUp 0.8s ease 0.2s both;
+}
+
+.story p {
+font-size: 15px;
+line-height: 1.7;
+color: rgba(240,230,200,0.8);
+}
+
+.story .highlight {
+color: var(–gold-light);
+font-style: italic;
+}
+
+/* Location badge */
+.location-badge {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+background: rgba(245,200,66,0.08);
+border: 1px solid rgba(245,200,66,0.2);
+border-radius: 20px;
+padding: 5px 14px;
+font-size: 12px;
+color: var(–gold);
+letter-spacing: 1px;
+margin-top: 10px;
+}
+
+/* Main action buttons */
+.buttons {
+display: flex;
+flex-direction: column;
+gap: 12px;
+margin-bottom: 28px;
+animation: fadeUp 0.8s ease 0.4s both;
+}
+
+.btn {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 16px 22px;
+border-radius: 12px;
+text-decoration: none;
+font-family: ‘Cinzel’, serif;
+font-size: 13px;
+letter-spacing: 1.5px;
+font-weight: 600;
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+}
+
+.btn::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+opacity: 0;
+transition: opacity 0.3s;
+}
+
+.btn:hover::before { opacity: 1; }
+.btn:hover { transform: translateY(-2px); }
+
+.btn-whatsapp {
+background: linear-gradient(135deg, #1a3a1a, #0f2e0f);
+border: 1px solid #25D366;
+color: #25D366;
+box-shadow: 0 4px 20px rgba(37,211,102,0.15);
+}
+.btn-whatsapp::before { background: rgba(37,211,102,0.08); }
+.btn-whatsapp:hover { box-shadow: 0 6px 28px rgba(37,211,102,0.25); }
+
+.btn-instagram {
+background: linear-gradient(135deg, #2d1a2e, #1a0d2e);
+border: 1px solid #E1306C;
+color: #E1306C;
+box-shadow: 0 4px 20px rgba(225,48,108,0.15);
+}
+.btn-instagram::before { background: rgba(225,48,108,0.08); }
+.btn-instagram:hover { box-shadow: 0 6px 28px rgba(225,48,108,0.25); }
+
+.btn-amazon {
+background: linear-gradient(135deg, #2a1e00, #1a1200);
+border: 1px solid var(–gold);
+color: var(–gold);
+box-shadow: 0 4px 20px rgba(245,200,66,0.15);
+}
+.btn-amazon::before { background: rgba(245,200,66,0.05); }
+.btn-amazon:hover { box-shadow: 0 6px 28px rgba(245,200,66,0.25); }
+
+.btn-left {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.btn-icon { font-size: 20px; }
+.btn-arrow { font-size: 16px; opacity: 0.6; }
+
+/* Products section */
+.section-title {
+font-family: ‘Cinzel’, serif;
+font-size: 11px;
+letter-spacing: 4px;
+color: var(–gold-dark);
+text-align: center;
+margin-bottom: 14px;
+text-transform: uppercase;
+}
+
+.products {
+animation: fadeUp 0.8s ease 0.6s both;
+margin-bottom: 28px;
+}
+
+.products-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+}
+
+.product-card {
+background: linear-gradient(135deg, #1a0d00, #120800);
+border: 1px solid rgba(245,200,66,0.15);
+border-radius: 12px;
+padding: 16px 14px;
+text-align: center;
+transition: all 0.3s ease;
+cursor: pointer;
+text-decoration: none;
+display: block;
+}
+
+.product-card:hover {
+border-color: rgba(245,200,66,0.4);
+transform: translateY(-3px);
+box-shadow: 0 8px 24px rgba(245,200,66,0.1);
+}
+
+.product-emoji { font-size: 28px; margin-bottom: 8px; display: block; }
+
+.product-name {
+font-family: ‘Cinzel’, serif;
+font-size: 11px;
+letter-spacing: 1px;
+color: var(–gold);
+margin-bottom: 4px;
+}
+
+.product-price {
+font-size: 13px;
+color: rgba(240,230,200,0.6);
+}
+
+.product-price span {
+color: #25D366;
+font-weight: 600;
+}
+
+/* Trust badges */
+.trust {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 8px;
+margin-bottom: 28px;
+animation: fadeUp 0.8s ease 0.8s both;
+}
+
+.trust-item {
+text-align: center;
+padding: 12px 8px;
+background: rgba(245,200,66,0.04);
+border: 1px solid rgba(245,200,66,0.1);
+border-radius: 10px;
+}
+
+.trust-icon { font-size: 20px; margin-bottom: 4px; }
+.trust-text { font-size: 11px; color: rgba(240,230,200,0.6); line-height: 1.3; }
+
+/* Footer */
+.footer {
+text-align: center;
+padding-top: 20px;
+border-top: 1px solid rgba(245,200,66,0.1);
+animation: fadeUp 0.8s ease 1s both;
+}
+
+.om-text {
+font-size: 22px;
+color: var(–gold);
+opacity: 0.5;
+letter-spacing: 8px;
+margin-bottom: 8px;
+}
+
+.footer-text {
+font-size: 12px;
+color: rgba(240,230,200,0.35);
+font-style: italic;
+}
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* Grain overlay */
+body::after {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 200 200’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘1’/%3E%3C/svg%3E”);
+opacity: 0.025;
+pointer-events: none;
+z-index: 100;
+}
+</style>
+
+</head>
+<body>
+
+<!-- Mandala background -->
+
+<svg class="bg-mandala" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="200" cy="200" r="190" stroke="#f5c842" stroke-width="1"/>
+  <circle cx="200" cy="200" r="160" stroke="#f5c842" stroke-width="1"/>
+  <circle cx="200" cy="200" r="130" stroke="#f5c842" stroke-width="1"/>
+  <circle cx="200" cy="200" r="100" stroke="#f5c842" stroke-width="1"/>
+  <circle cx="200" cy="200" r="70" stroke="#f5c842" stroke-width="1"/>
+  <line x1="200" y1="10" x2="200" y2="390" stroke="#f5c842" stroke-width="0.5"/>
+  <line x1="10" y1="200" x2="390" y2="200" stroke="#f5c842" stroke-width="0.5"/>
+  <line x1="54" y1="54" x2="346" y2="346" stroke="#f5c842" stroke-width="0.5"/>
+  <line x1="346" y1="54" x2="54" y2="346" stroke="#f5c842" stroke-width="0.5"/>
+  <line x1="27" y1="127" x2="373" y2="273" stroke="#f5c842" stroke-width="0.3"/>
+  <line x1="127" y1="27" x2="273" y2="373" stroke="#f5c842" stroke-width="0.3"/>
+  <line x1="373" y1="127" x2="27" y2="273" stroke="#f5c842" stroke-width="0.3"/>
+  <line x1="273" y1="27" x2="127" y2="373" stroke="#f5c842" stroke-width="0.3"/>
+</svg>
+
+<!-- Prayer Flags Banner -->
+
+<div class="flags-banner">
+  <div class="flag-string"></div>
+  <div class="flags-row">
+    <div class="flag">ཨོམ</div>
+    <div class="flag">མ་</div>
+    <div class="flag">ཎི</div>
+    <div class="flag">པདྨེ</div>
+    <div class="flag">ཧཱུྃ</div>
+    <div class="flag">ཨོམ</div>
+    <div class="flag">མ་</div>
+    <div class="flag">ཎི</div>
+    <div class="flag">པདྨེ</div>
+    <div class="flag">ཧཱུྃ</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Header -->
+
+  <div class="header">
+    <div class="logo-ring">
+      <span class="logo-symbol">🔱</span>
+    </div>
+    <div class="store-name">TIBETAN<br>TREASURES</div>
+    <div class="store-tagline">Authentic · Blessed · Handpicked</div>
+    <div class="location-badge">
+      📍 Sourced from Bylakuppe Settlement, Karnataka
+    </div>
+  </div>
+
+  <!-- Divider -->
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-dot"></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- Story -->
+
+  <div class="story">
+    <p>
+      We are a <span class="highlight">Tibetan family from Bylakuppe</span> — India's largest Tibetan settlement. Every product is personally handpicked from our monastery community and shipped with love across India. 🙏
+    </p>
+  </div>
+
+  <!-- Divider -->
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-dot"></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- Action Buttons -->
+
+  <div class="buttons">
+
+```
+<a href="https://wa.me/918279736865?text=Namaste!%20I%20want%20to%20order%20from%20Tibetan%20Treasures%20India%20🙏" class="btn btn-whatsapp" target="_blank">
+  <div class="btn-left">
+    <span class="btn-icon">💬</span>
+    <span>ORDER ON WHATSAPP</span>
+  </div>
+  <span class="btn-arrow">→</span>
+</a>
+
+<a href="https://instagram.com/tibetan.treasures.india" class="btn btn-instagram" target="_blank">
+  <div class="btn-left">
+    <span class="btn-icon">📸</span>
+    <span>FOLLOW ON INSTAGRAM</span>
+  </div>
+  <span class="btn-arrow">→</span>
+</a>
+
+<a href="https://www.amazon.in/s?me=YOUR_SELLER_ID" class="btn btn-amazon" target="_blank">
+  <div class="btn-left">
+    <span class="btn-icon">📦</span>
+    <span>SHOP ON AMAZON</span>
+  </div>
+  <span class="btn-arrow">→</span>
+</a>
+```
+
+  </div>
+
+  <!-- Products -->
+
+  <div class="products">
+    <div class="section-title">✦ Our Products ✦</div>
+    <div class="products-grid">
+
+```
+  <a href="https://wa.me/918279736865?text=I%20want%20to%20order%20Prayer%20Flags!" class="product-card" target="_blank">
+    <span class="product-emoji">🏳️</span>
+    <div class="product-name">PRAYER FLAGS</div>
+    <div class="product-price">From <span>₹99</span></div>
+  </a>
+
+  <a href="https://wa.me/918279736865?text=I%20want%20to%20order%20a%20Singing%20Bowl!" class="product-card" target="_blank">
+    <span class="product-emoji">🎵</span>
+    <div class="product-name">SINGING BOWLS</div>
+    <div class="product-price">From <span>₹499</span></div>
+  </a>
+
+  <a href="https://wa.me/918279736865?text=I%20want%20to%20order%20Mala%20Beads!" class="product-card" target="_blank">
+    <span class="product-emoji">📿</span>
+    <div class="product-name">MALA BEADS</div>
+    <div class="product-price">From <span>₹199</span></div>
+  </a>
+
+  <a href="https://wa.me/918279736865?text=I%20want%20to%20order%20Tibetan%20Incense!" class="product-card" target="_blank">
+    <span class="product-emoji">🪔</span>
+    <div class="product-name">INCENSE & LAMPS</div>
+    <div class="product-price">From <span>₹149</span></div>
+  </a>
+
+  <a href="https://wa.me/918279736865?text=I%20want%20to%20order%20a%20Thangka!" class="product-card" target="_blank">
+    <span class="product-emoji">🖼️</span>
+    <div class="product-name">THANGKA ART</div>
+    <div class="product-price">From <span>₹799</span></div>
+  </a>
+
+  <a href="https://wa.me/918279736865?text=I%20want%20to%20order%20Tibetan%20Books!" class="product-card" target="_blank">
+    <span class="product-emoji">📚</span>
+    <div class="product-name">TIBETAN BOOKS</div>
+    <div class="product-price">From <span>₹99</span></div>
+  </a>
+
+</div>
+```
+
+  </div>
+
+  <!-- Trust Badges -->
+
+  <div class="trust">
+    <div class="trust-item">
+      <div class="trust-icon">🚚</div>
+      <div class="trust-text">Ships Pan India</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">✅</div>
+      <div class="trust-text">100% Authentic</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">💰</div>
+      <div class="trust-text">COD Available</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+
+  <div class="footer">
+    <div class="om-text">ཨོམ་མ་ཎི་པདྨེ་ཧཱུྃ</div>
+    <div class="footer-text">Every purchase supports the Tibetan community of Bylakuppe 🙏</div>
+  </div>
+
+</div>
+</body>
+</html>
