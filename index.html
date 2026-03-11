@@ -72,8 +72,8 @@ margin-bottom: 48px;
 .hero { text-align: center; padding: 20px 0 40px; }
 
 .logo-circle {
-width: 110px;
-height: 110px;
+width: 140px;
+height: 140px;
 border-radius: 50%;
 margin: 0 auto 28px;
 border: 1.5px solid rgba(201,168,76,0.5);
@@ -203,6 +203,30 @@ color: var(–gold-pale);
 .btn-secondary:hover {
 background: rgba(201,168,76,0.12);
 border-color: rgba(201,168,76,0.5);
+transform: translateY(-1px);
+}
+
+.btn-instagram {
+background: linear-gradient(135deg, #2D0A1E, #3D1530, #1A0D2E);
+border: 1px solid rgba(225,105,150,0.4);
+color: #F5A8C8;
+}
+
+.btn-instagram:hover {
+border-color: rgba(225,105,150,0.7);
+box-shadow: 0 4px 20px rgba(225,48,108,0.2);
+transform: translateY(-1px);
+}
+
+.btn-amazon {
+background: linear-gradient(135deg, #1A1000, #2A1A00);
+border: 1px solid rgba(255,153,0,0.4);
+color: #FFB347;
+}
+
+.btn-amazon:hover {
+border-color: rgba(255,153,0,0.65);
+box-shadow: 0 4px 20px rgba(255,153,0,0.15);
 transform: translateY(-1px);
 }
 
@@ -341,6 +365,14 @@ padding-top: 20px;
 border-top: 1px solid rgba(201,168,76,0.1);
 }
 
+.tibetan-mantra {
+font-size: 28px;
+letter-spacing: 2px;
+margin-bottom: 12px;
+display: block;
+line-height: 1.6;
+}
+
 .tibetan-script {
 font-size: 20px;
 color: rgba(201,168,76,0.4);
@@ -389,80 +421,144 @@ animation: fadeUp 0.8s ease both;
   <section class="hero">
 
 ```
-<!-- SVG Himalayan Mountain Logo -->
+<!-- SVG Himalayan Painting-Style Logo -->
 <div class="logo-circle">
   <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0E0B06"/>
-        <stop offset="100%" stop-color="#1F1608"/>
+      <!-- deep blue-indigo sky like the painting -->
+      <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0D1B3E"/>
+        <stop offset="50%" stop-color="#1A2D5A"/>
+        <stop offset="100%" stop-color="#2A3A60"/>
       </linearGradient>
-      <linearGradient id="snowGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#F5E6C0"/>
-        <stop offset="60%" stop-color="#C9A84C"/>
-        <stop offset="100%" stop-color="#8B6B2A"/>
+      <!-- golden sunrise hitting the peak -->
+      <linearGradient id="peakSunG" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#F5C842"/>
+        <stop offset="30%" stop-color="#E8943A"/>
+        <stop offset="70%" stop-color="#8B5A2B"/>
+        <stop offset="100%" stop-color="#3A2010"/>
       </linearGradient>
-      <linearGradient id="peakGrad" x1="0" y1="0" x2="0.5" y2="1">
-        <stop offset="0%" stop-color="#E8C97A"/>
-        <stop offset="100%" stop-color="#6B4E1A"/>
+      <!-- left peak dark blue-grey -->
+      <linearGradient id="peakLeftG" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#6B7FA8"/>
+        <stop offset="100%" stop-color="#1A2340"/>
       </linearGradient>
-      <radialGradient id="moonGlow" cx="50%" cy="30%" r="30%">
-        <stop offset="0%" stop-color="rgba(232,201,122,0.3)"/>
+      <!-- mist/cloud gradient -->
+      <linearGradient id="mistG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="rgba(180,200,255,0.5)"/>
+        <stop offset="100%" stop-color="rgba(100,140,220,0.1)"/>
+      </linearGradient>
+      <!-- path/ground warm brown -->
+      <linearGradient id="groundG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#7A4A1A"/>
+        <stop offset="100%" stop-color="#2A1500"/>
+      </linearGradient>
+      <radialGradient id="sunGlow" cx="65%" cy="25%" r="35%">
+        <stop offset="0%" stop-color="rgba(255,210,80,0.5)"/>
+        <stop offset="60%" stop-color="rgba(255,150,40,0.15)"/>
         <stop offset="100%" stop-color="transparent"/>
       </radialGradient>
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="2" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      <filter id="lg" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="2.5"/>
       </filter>
+      <filter id="sm" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur stdDeviation="1"/>
+      </filter>
+      <clipPath id="circ"><circle cx="100" cy="100" r="98"/></clipPath>
     </defs>
 
-    <!-- sky background -->
-    <rect width="200" height="200" fill="url(#skyGrad)"/>
-    <rect width="200" height="200" fill="url(#moonGlow)"/>
+    <g clip-path="url(#circ)">
+      <!-- sky -->
+      <rect width="200" height="200" fill="url(#skyG)"/>
+      <!-- sun glow behind peak -->
+      <rect width="200" height="200" fill="url(#sunGlow)"/>
 
-    <!-- stars -->
-    <circle cx="30" cy="25" r="1" fill="#C9A84C" opacity="0.6"/>
-    <circle cx="60" cy="15" r="0.8" fill="#E8C97A" opacity="0.5"/>
-    <circle cx="90" cy="22" r="1" fill="#C9A84C" opacity="0.4"/>
-    <circle cx="150" cy="18" r="0.8" fill="#E8C97A" opacity="0.6"/>
-    <circle cx="170" cy="30" r="1" fill="#C9A84C" opacity="0.5"/>
-    <circle cx="120" cy="12" r="0.6" fill="#E8C97A" opacity="0.7"/>
+      <!-- far back range – dark blue silhouette -->
+      <polygon points="0,110 18,82 35,95 55,68 72,82 88,58 105,72 125,50 145,68 162,55 180,72 200,60 200,130 0,130"
+               fill="#1A2645"/>
+      <!-- snow on far range peaks -->
+      <polygon points="88,58 96,64 83,67" fill="rgba(220,235,255,0.7)"/>
+      <polygon points="125,50 135,57 118,60" fill="rgba(220,235,255,0.8)"/>
+      <polygon points="162,55 170,62 156,64" fill="rgba(220,235,255,0.6)"/>
 
-    <!-- distant range (back) -->
-    <polygon points="0,130 25,95 50,110 70,85 95,105 120,80 145,100 165,82 200,105 200,160 0,160"
-             fill="#1A1209"/>
-    <!-- snow caps on back range -->
-    <polygon points="70,85 80,90 65,92" fill="rgba(245,230,192,0.25)"/>
-    <polygon points="120,80 132,86 113,88" fill="rgba(245,230,192,0.3)"/>
-    <polygon points="165,82 177,88 158,90" fill="rgba(245,230,192,0.2)"/>
+      <!-- mist layer across valley -->
+      <ellipse cx="100" cy="128" rx="110" ry="18" fill="url(#mistG)" filter="url(#lg)"/>
+      <ellipse cx="60" cy="132" rx="70" ry="12" fill="rgba(160,190,255,0.25)" filter="url(#lg)"/>
 
-    <!-- main center peak -->
-    <polygon points="60,160 100,45 140,160" fill="url(#peakGrad)"/>
-    <!-- shadow side -->
-    <polygon points="100,45 140,160 100,160" fill="rgba(0,0,0,0.35)"/>
+      <!-- LEFT dark rocky peak -->
+      <polygon points="-5,200 30,95 65,135 40,200" fill="url(#peakLeftG)"/>
+      <polygon points="30,95 50,105 38,115 22,108" fill="rgba(90,110,150,0.6)"/>
 
-    <!-- left flanking peak -->
-    <polygon points="10,160 52,80 90,160" fill="#241A08"/>
-    <polygon points="52,80 90,160 65,160" fill="rgba(0,0,0,0.3)"/>
-    <!-- snow cap left -->
-    <polygon points="52,80 64,88 48,92" fill="rgba(245,230,192,0.4)" filter="url(#glow)"/>
+      <!-- RIGHT dark rocky peak -->
+      <polygon points="145,200 168,90 205,140 205,200" fill="#1E2E50"/>
+      <polygon points="168,90 185,102 175,112 160,105" fill="rgba(80,100,140,0.5)"/>
 
-    <!-- right flanking peak -->
-    <polygon points="110,160 148,75 195,160" fill="#1F1507"/>
-    <polygon points="148,75 195,160 165,160" fill="rgba(0,0,0,0.25)"/>
-    <!-- snow cap right -->
-    <polygon points="148,75 162,84 142,88" fill="rgba(245,230,192,0.45)" filter="url(#glow)"/>
+      <!-- MAIN CENTRE PEAK - golden sunrise light -->
+      <polygon points="50,200 100,28 150,200" fill="url(#peakSunG)"/>
+      <!-- shadow side of main peak -->
+      <polygon points="100,28 150,200 105,200" fill="rgba(15,25,60,0.55)"/>
+      <!-- warm lit face -->
+      <polygon points="100,28 85,65 60,120 50,200 100,200" fill="rgba(240,160,60,0.18)"/>
 
-    <!-- main snow cap -->
-    <polygon points="100,45 115,65 100,75 85,65" fill="rgba(245,230,192,0.9)" filter="url(#glow)"/>
-    <polygon points="100,45 115,65 107,70 100,60" fill="rgba(255,255,255,0.5)"/>
+      <!-- snow/ice cap on main peak -->
+      <polygon points="100,28 118,58 100,70 82,58" fill="rgba(240,245,255,0.95)" filter="url(#sm)"/>
+      <polygon points="100,28 112,52 104,58 100,46" fill="rgba(255,255,255,0.9)"/>
+      <!-- golden light on snow -->
+      <polygon points="100,28 112,52 107,55" fill="rgba(255,210,80,0.6)"/>
 
-    <!-- gold horizon glow -->
-    <rect x="0" y="148" width="200" height="12" fill="url(#skyGrad)" opacity="0.8"/>
-    <ellipse cx="100" cy="150" rx="100" ry="8" fill="rgba(201,168,76,0.08)"/>
+      <!-- rocky foreground left -->
+      <polygon points="0,200 0,155 25,148 45,160 30,200" fill="#1A1000"/>
+      <polygon points="0,155 25,148 15,165 0,170" fill="#2A1800"/>
 
-    <!-- circular border inside -->
-    <circle cx="100" cy="100" r="96" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+      <!-- rocky foreground right -->
+      <polygon points="200,200 200,150 178,144 160,158 175,200" fill="#1A1000"/>
+
+      <!-- stupa/chorten silhouette (like in painting) -->
+      <rect x="72" y="158" width="14" height="3" fill="#3A2A10" rx="1"/>
+      <rect x="74" y="155" width="10" height="4" fill="#4A3418" rx="1"/>
+      <rect x="76" y="152" width="6" height="4" fill="#5A4020" rx="1"/>
+      <rect x="77" y="148" width="4" height="5" fill="#6A4E28" rx="1"/>
+      <polygon points="79,142 77,149 81,149" fill="#C9A84C"/>
+
+      <!-- path/ground -->
+      <polygon points="80,200 88,162 112,162 120,200" fill="url(#groundG)"/>
+      <ellipse cx="100" cy="185" rx="12" ry="4" fill="rgba(180,120,40,0.4)"/>
+
+      <!-- prayer flags string (like in painting) -->
+      <path d="M30,148 Q55,138 79,143" stroke="rgba(200,200,200,0.6)" stroke-width="0.8" fill="none"/>
+      <!-- tiny prayer flags -->
+      <rect x="30" y="145" width="5" height="6" fill="#1565C0" opacity="0.9"/>
+      <rect x="38" y="142" width="5" height="6" fill="#EEEEEE" opacity="0.9"/>
+      <rect x="46" y="140" width="5" height="6" fill="#C62828" opacity="0.9"/>
+      <rect x="54" y="139" width="5" height="6" fill="#2E7D32" opacity="0.9"/>
+      <rect x="62" y="140" width="5" height="6" fill="#F9A825" opacity="0.9"/>
+      <rect x="70" y="141" width="5" height="6" fill="#1565C0" opacity="0.9"/>
+
+      <!-- two tiny figures like in the painting -->
+      <!-- figure 1 -->
+      <ellipse cx="95" cy="157" rx="2" ry="2" fill="#2A1800"/>
+      <line x1="95" y1="159" x2="95" y2="165" stroke="#2A1800" stroke-width="1.5"/>
+      <line x1="95" y1="161" x2="92" y2="164" stroke="#2A1800" stroke-width="1"/>
+      <line x1="95" y1="161" x2="98" y2="164" stroke="#2A1800" stroke-width="1"/>
+      <line x1="95" y1="165" x2="93" y2="169" stroke="#2A1800" stroke-width="1"/>
+      <line x1="95" y1="165" x2="97" y2="169" stroke="#2A1800" stroke-width="1"/>
+      <!-- backpack hint -->
+      <rect x="96" y="159" width="3" height="4" fill="#3A6020" rx="0.5"/>
+      <!-- figure 2 smaller/behind -->
+      <ellipse cx="104" cy="159" rx="1.5" ry="1.5" fill="#2A1800"/>
+      <line x1="104" y1="161" x2="104" y2="166" stroke="#2A1800" stroke-width="1.2"/>
+      <rect x="105" y="161" width="2.5" height="3.5" fill="#F9A825" rx="0.5"/>
+
+      <!-- warm ground glow like painting's lantern light -->
+      <ellipse cx="96" cy="172" rx="14" ry="5" fill="rgba(200,140,40,0.3)" filter="url(#lg)"/>
+
+      <!-- golden light rays from peak -->
+      <line x1="113" y1="40" x2="140" y2="20" stroke="rgba(255,210,80,0.12)" stroke-width="8"/>
+      <line x1="115" y1="45" x2="148" y2="30" stroke="rgba(255,180,40,0.08)" stroke-width="6"/>
+
+      <!-- circular gold border -->
+      <circle cx="100" cy="100" r="97" fill="none" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+    </g>
   </svg>
 </div>
 
@@ -485,12 +581,12 @@ animation: fadeUp 0.8s ease both;
     <span>ORDER ON WHATSAPP</span>
     <span class="btn-arrow">→</span>
   </a>
-  <a href="https://instagram.com/tibetan.treasures.india" class="btn btn-secondary">
-    <span class="btn-icon">📸</span>
+  <a href="https://instagram.com/tibetan.treasures.india" class="btn btn-instagram">
+    <span class="btn-icon">📷</span>
     <span>FOLLOW ON INSTAGRAM</span>
     <span class="btn-arrow">→</span>
   </a>
-  <a href="https://www.amazon.in/s?me=YOUR_SELLER_ID" class="btn btn-secondary">
+  <a href="https://www.amazon.in/s?me=YOUR_SELLER_ID" class="btn btn-amazon">
     <span class="btn-icon">📦</span>
     <span>SHOP ON AMAZON</span>
     <span class="btn-arrow">→</span>
@@ -512,12 +608,113 @@ animation: fadeUp 0.8s ease both;
 
   <section class="products-grid">
     <a href="https://wa.me/918279736865?text=I%20want%20to%20order%20Prayer%20Flags!" class="product-card">
-      <span class="product-emoji">🏳️</span>
+      <!-- SVG Prayer Flags like the reference image -->
+      <span class="product-emoji">
+        <svg viewBox="0 0 90 58" width="80" height="52" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="fs"><feGaussianBlur stdDeviation="0.5"/></filter>
+          </defs>
+          <!-- string drooping like real prayer flags -->
+          <path d="M3,8 Q22,22 45,18 Q68,13 87,20" stroke="#D4C5A0" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <!-- FLAG 1: Blue -->
+          <rect x="3" y="8" width="14" height="17" rx="0.5" fill="#1565C0"/>
+          <rect x="3" y="8" width="14" height="2" fill="#0D47A1"/>
+          <text x="10" y="19" font-size="8" text-anchor="middle" fill="#90CAF9" font-family="Georgia,serif" font-weight="bold">ཨོཾ</text>
+          <text x="10" y="26" font-size="4" text-anchor="middle" fill="rgba(144,202,249,0.7)" font-family="Arial">Om</text>
+          <!-- FLAG 2: White -->
+          <rect x="19" y="12" width="14" height="17" rx="0.5" fill="#F5F5F5"/>
+          <rect x="19" y="12" width="14" height="2" fill="#E0E0E0"/>
+          <text x="26" y="23" font-size="8" text-anchor="middle" fill="#1565C0" font-family="Georgia,serif" font-weight="bold">མ</text>
+          <text x="26" y="30" font-size="4" text-anchor="middle" fill="rgba(21,101,192,0.7)" font-family="Arial">Ma</text>
+          <!-- FLAG 3: Red -->
+          <rect x="35" y="10" width="14" height="17" rx="0.5" fill="#C62828"/>
+          <rect x="35" y="10" width="14" height="2" fill="#B71C1C"/>
+          <text x="42" y="21" font-size="8" text-anchor="middle" fill="#FFCDD2" font-family="Georgia,serif" font-weight="bold">ཎི</text>
+          <text x="42" y="28" font-size="4" text-anchor="middle" fill="rgba(255,205,210,0.7)" font-family="Arial">Ni</text>
+          <!-- FLAG 4: Green -->
+          <rect x="51" y="8" width="14" height="17" rx="0.5" fill="#2E7D32"/>
+          <rect x="51" y="8" width="14" height="2" fill="#1B5E20"/>
+          <text x="58" y="19" font-size="7" text-anchor="middle" fill="#A5D6A7" font-family="Georgia,serif" font-weight="bold">པདྨེ</text>
+          <text x="58" y="26" font-size="4" text-anchor="middle" fill="rgba(165,214,167,0.7)" font-family="Arial">Padme</text>
+          <!-- FLAG 5: Yellow -->
+          <rect x="67" y="11" width="14" height="17" rx="0.5" fill="#F9A825"/>
+          <rect x="67" y="11" width="14" height="2" fill="#F57F17"/>
+          <text x="74" y="22" font-size="8" text-anchor="middle" fill="#4E342E" font-family="Georgia,serif" font-weight="bold">ཧཱུྃ</text>
+          <text x="74" y="29" font-size="4" text-anchor="middle" fill="rgba(78,52,46,0.7)" font-family="Arial">Hung</text>
+          <!-- shadow under flags -->
+          <ellipse cx="45" cy="50" rx="35" ry="3" fill="rgba(0,0,0,0.15)" filter="url(#fs)"/>
+        </svg>
+      </span>
       <div class="product-name">PRAYER FLAGS</div>
       <div class="product-price">From <span>₹99</span></div>
     </a>
     <a href="https://wa.me/918279736865?text=I%20want%20to%20order%20a%20Singing%20Bowl!" class="product-card">
-      <span class="product-emoji">🎵</span>
+      <!-- SVG Singing Bowl like the reference image -->
+      <span class="product-emoji">
+        <svg viewBox="0 0 90 80" width="72" height="64" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bowlBody" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#C8860A"/>
+              <stop offset="30%" stop-color="#8B4513"/>
+              <stop offset="70%" stop-color="#5C2E00"/>
+              <stop offset="100%" stop-color="#3A1A00"/>
+            </linearGradient>
+            <linearGradient id="bowlRim" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E8C97A"/>
+              <stop offset="50%" stop-color="#C8860A"/>
+              <stop offset="100%" stop-color="#8B5A0A"/>
+            </linearGradient>
+            <linearGradient id="bowlInner" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1A0800"/>
+              <stop offset="100%" stop-color="#0A0400"/>
+            </linearGradient>
+            <linearGradient id="stickG" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#E8C97A"/>
+              <stop offset="40%" stop-color="#C8860A"/>
+              <stop offset="100%" stop-color="#6B4000"/>
+            </linearGradient>
+            <radialGradient id="bowlShine" cx="35%" cy="35%" r="50%">
+              <stop offset="0%" stop-color="rgba(245,220,150,0.4)"/>
+              <stop offset="100%" stop-color="transparent"/>
+            </radialGradient>
+            <filter id="bshadow"><feGaussianBlur stdDeviation="2"/></filter>
+          </defs>
+          <!-- shadow -->
+          <ellipse cx="43" cy="72" rx="28" ry="5" fill="rgba(0,0,0,0.3)" filter="url(#bshadow)"/>
+          <!-- bowl body -->
+          <path d="M12,38 Q12,68 43,68 Q74,68 74,38 Z" fill="url(#bowlBody)"/>
+          <!-- shine on bowl body -->
+          <path d="M12,38 Q12,68 43,68 Q74,68 74,38 Z" fill="url(#bowlShine)"/>
+          <!-- decorative band - lotus patterns -->
+          <path d="M14,52 Q43,58 72,52 Q74,56 72,58 Q43,64 14,58 Z" fill="rgba(200,134,10,0.5)"/>
+          <!-- lotus motifs on band -->
+          <ellipse cx="30" cy="55" rx="5" ry="3" fill="none" stroke="rgba(232,201,122,0.7)" stroke-width="0.8"/>
+          <line x1="30" y1="52" x2="30" y2="58" stroke="rgba(232,201,122,0.5)" stroke-width="0.6"/>
+          <ellipse cx="43" cy="55" rx="5" ry="3" fill="none" stroke="rgba(232,201,122,0.7)" stroke-width="0.8"/>
+          <line x1="43" y1="52" x2="43" y2="58" stroke="rgba(232,201,122,0.5)" stroke-width="0.6"/>
+          <ellipse cx="56" cy="55" rx="5" ry="3" fill="none" stroke="rgba(232,201,122,0.7)" stroke-width="0.8"/>
+          <line x1="56" y1="52" x2="56" y2="58" stroke="rgba(232,201,122,0.5)" stroke-width="0.6"/>
+          <!-- gold rim line top -->
+          <ellipse cx="43" cy="38" rx="31" ry="7" fill="url(#bowlRim)"/>
+          <!-- inner bowl dark -->
+          <ellipse cx="43" cy="38" rx="28" ry="6" fill="url(#bowlInner)"/>
+          <!-- inner reflection -->
+          <ellipse cx="38" cy="36" rx="10" ry="3" fill="rgba(100,60,10,0.3)"/>
+          <!-- bottom rim -->
+          <ellipse cx="43" cy="66" rx="18" ry="4" fill="url(#bowlRim)" opacity="0.8"/>
+          <ellipse cx="43" cy="68" rx="14" ry="3" fill="#2A1200"/>
+          <!-- MALLET/STICK -->
+          <!-- stick body angled like reference image -->
+          <line x1="58" y1="8" x2="52" y2="48" stroke="url(#stickG)" stroke-width="6" stroke-linecap="round"/>
+          <!-- stick stripes/rings -->
+          <line x1="57" y1="12" x2="54" y2="22" stroke="rgba(90,50,0,0.6)" stroke-width="1.5"/>
+          <line x1="56" y1="18" x2="53" y2="28" stroke="rgba(90,50,0,0.6)" stroke-width="1.5"/>
+          <!-- stick tip -->
+          <ellipse cx="52" cy="48" rx="4" ry="3" fill="#C8860A"/>
+          <!-- stick top handle -->
+          <ellipse cx="58" cy="9" rx="4.5" ry="3" fill="#E8C97A"/>
+        </svg>
+      </span>
       <div class="product-name">SINGING BOWLS</div>
       <div class="product-price">From <span>₹499</span></div>
     </a>
@@ -563,7 +760,14 @@ animation: fadeUp 0.8s ease both;
   <!-- FOOTER -->
 
   <div class="footer-mantra">
-    <span class="tibetan-script">ཨོམ་མ་ཎི་པདྨེ་ཧཱུྃ</span>
+    <div class="tibetan-mantra">
+      <span style="color:#FFFFFF;">ཨོཾ</span><!--
+      --><span style="color:#4CAF50;">་མ</span><!--
+      --><span style="color:#FFD700;">་ཎི</span><!--
+      --><span style="color:#00BCD4;">་པདྨེ</span><!--
+      --><span style="color:#F44336;">་མེ</span><!--
+      --><span style="color:#3F51B5;">་ཧཱུྃ</span>
+    </div>
     <p class="footer-note">Every purchase carries a blessing 🙏</p>
   </div>
 
